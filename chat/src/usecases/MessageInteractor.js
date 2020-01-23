@@ -1,4 +1,6 @@
 const ApiError = require('./error/ApiError');
+const MessageRepository = require('../domain/MessageRepository');
+const RoomRepository = require('../domain/RoomRepository');
 
 module.exports = {
     sendMessage,

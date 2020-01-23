@@ -1,3 +1,5 @@
+const Message = require('../datasource/models/MessageModel');
+
 module.exports = {
     create,
 };

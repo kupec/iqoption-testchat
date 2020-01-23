@@ -1,4 +1,5 @@
 const ApiError = require('./ApiError');
+const logger = require('../../datasource/log/logger');
 
 module.exports = function(error) {
     if (error instanceof ApiError) return error;

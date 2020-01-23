@@ -8,7 +8,6 @@ const {URL} = require('url');
 
 const app = express();
 
-app.use(logger('chat'));
 app.use(
     bodyParser.json({
         limit: '50mb',

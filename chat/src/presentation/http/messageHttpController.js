@@ -14,7 +14,11 @@ router.post(
     '/',
     watchError(async function(req, res, next) {
         const {text, roomId} = req.body;
-        const {user, room} = await MessageInteractor.sendMessage({text, roomId});
+        const user = {
+            id: 3,
+            name: 'debug',
+        };
+        const {room} = await MessageInteractor.sendMessage({text, user, roomId});
 
         response.sendAnswer(res, {
             text,

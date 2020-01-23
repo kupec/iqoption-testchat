@@ -1,37 +1,30 @@
 #!/usr/bin/env node
 
 const packageJSON = require('../package.json');
-logger.info(`+=====================================================`);
-logger.info(`| ${packageJSON.name}, version: ${packageJSON.version}`);
-logger.info(`+-----------------------------------------------------`);
-
+const config = require('../src/config');
+const logger = require('../src/datasource/log/logger');
+const databaseLayer = require('../src/datasource/databaseLayer');
 const app = require('../app');
-const debug = require('debug')('iqoption');
 const http = require('http');
 
-const port = normalizePort(config.port);
-app.set('port', port);
+start().catch(error => {
+    logger.error(error);
+    process.exit(1);
+});
 
-const server = http.createServer(app);
+async function start() {
+    logger.info(`+=====================================================`);
+    logger.info(`| ${packageJSON.name}, version: ${packageJSON.version}`);
+    logger.info(`+-----------------------------------------------------`);
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+    await databaseLayer.init();
 
-function normalizePort(val) {
-    const port = parseInt(val, 10);
+    const port = Number(config.port);
 
-    if (isNaN(port)) {
-        // named pipe
-        return val;
-    }
-
-    if (port >= 0) {
-        // port number
-        return port;
-    }
-
-    return false;
+    const server = http.createServer(app);
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
 }
 
 function onError(error) {
@@ -39,9 +32,7 @@ function onError(error) {
         throw error;
     }
 
-    const bind = typeof port === 'string'
-        ? 'Pipe ' + port
-        : 'Port ' + port;
+    const bind = 'Port ' + config.port;
 
     // handle specific listen errors with friendly messages
     switch (error.code) {
@@ -59,9 +50,6 @@ function onError(error) {
 }
 
 function onListening() {
-    const addr = server.address();
-    const bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port;
-    debug('Listening on ' + bind);
+    const addr = this.address();
+    logger.debug('Listening on port ' + addr.port);
 }

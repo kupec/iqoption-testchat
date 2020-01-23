@@ -1,2 +1,8 @@
 module.exports = {
+    port: 3000,
+    dbUser: '',
+    dbPass: '',
+    dbHost: '',
+    dbPort : '',
+    dbName: '',
 };
