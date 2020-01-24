@@ -2,6 +2,7 @@ const Message = require('../datasource/models/MessageModel');
 
 module.exports = {
     create,
+    findAllInRoom,
 };
 
 async function create({text, userId, roomId}) {
@@ -9,5 +10,14 @@ async function create({text, userId, roomId}) {
         text,
         userId,
         roomId,
+    });
+}
+
+async function findAllInRoom(roomId, includeModels = []) {
+    return await Message.findAll({
+        where: {
+            roomId,
+        },
+        include: includeModels.map(model => ({model})),
     });
 }
