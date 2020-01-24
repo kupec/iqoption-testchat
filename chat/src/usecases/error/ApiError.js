@@ -3,6 +3,10 @@ class ApiError extends Error {
         return new ApiError('Bad request: required parameters missing or invalid', 400);
     }
 
+    static unauthorizedError(message = 'Not authorized') {
+        return new ApiError(message, 401);
+    }
+
     static internalServer() {
         return new ApiError('Internal Server Error', 500);
     }

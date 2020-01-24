@@ -23,21 +23,6 @@ async function init() {
     await sequelize.authenticate();
     initializeModels();
     await sequelize.sync();
-
-    const Room = require('./models/RoomModel');
-    const User = require('./models/UserModel');
-    await Room.create({
-        name: 'first room',
-    });
-    await Room.create({
-        name: 'second room',
-    });
-    await User.create({
-        name: 'Jonh Doe',
-    });
-    await User.create({
-        name: 'Matt	North',
-    });
 }
 
 function initializeModels() {
