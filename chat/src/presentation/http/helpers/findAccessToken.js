@@ -1,3 +1,3 @@
 module.exports = function(req) {
-    return req.body.accessToken || req.query.accessToken;
+    return req.query.accessToken || req.cookies.sessionId;
 };
