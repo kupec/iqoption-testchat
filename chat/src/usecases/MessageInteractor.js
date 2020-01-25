@@ -1,6 +1,7 @@
 const ApiError = require('./error/ApiError');
 const MessageRepository = require('../domain/MessageRepository');
 const RoomRepository = require('../domain/RoomRepository');
+const pubSub = require('../datasource/pubSub/pubSub');
 
 module.exports = {
     sendMessage,
@@ -22,11 +23,11 @@ async function sendMessage({text, user, roomId}) {
         roomId: room.id,
     });
 
-    //    messageSystem.sendToAll('chat:message', {
-    //        text,
-    //        room,
-    //        user,
-    //    });
+    await pubSub.send('iqoption-testchat:notification', {
+        text,
+        room,
+        user,
+    });
 
     return {text, room, user};
 }
