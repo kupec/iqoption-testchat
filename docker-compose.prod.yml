@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+    lb:
+        ports:
+            - 4000:80
+
+    chat:
+
+    notification:
+
+    postgres:
+        volumes:
+            - postgres_volume:/data
+
+    redis:
+        volumes:
+            - redis_volume:/data
+
+volumes:
+    postgres_volume:
+    redis_volume:

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    lb:
+        ports:
+            - 4000:80
+
+    chat:
+
+    notification:
+
+    postgres:
+
+    redis:

@@ -9,4 +9,4 @@ COPY . /app
 
 EXPOSE 80
 
-ENTRYPOINT ["node", "bin/www"]
+ENTRYPOINT ["node", "server"]

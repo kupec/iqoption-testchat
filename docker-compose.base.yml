@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+    lb:
+        build: load_balancer
+        restart: always
+
+    chat:
+        build: chat
+        restart: always
+        environment:
+            - PORT=80
+            - DB_USER=postgres
+            - DB_PASS=secret
+            - DB_HOST=postgres
+            - DB_PORT=5432
+            - DB_NAME=postgres
+            - REDIS_URL=redis://redis
+
+    notification:
+        build: notification
+        restart: always
+        environment:
+            - PORT=80
+            - REDIS_URL=redis://redis
+
+    postgres:
+        image: postgres
+        restart: always
+        environment:
+            - POSTGRES_PASSWORD=secret
+
+    redis:
+        image: redis
+        restart: always
