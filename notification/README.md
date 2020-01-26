@@ -1,12 +1,10 @@
-# iq option test chat - Chat microservice
+# iq option test chat - Notification microservice
 
-Chat microservice
+Notification microservice
 
 ## Config
 
--   **port** - http port
--   **dbUser** -
--   **dbPass** -
--   **dbHost** -
--   **dbPort** -
--   **dbName** -
+-   **port** - websocket port
+-   **redisUrl** - redis URL
+
+One can pass config arguments as ENVIRONMENT variable (for example, argument `dbFirstArg` as `DB_FIRST_ARGUMENT`)
