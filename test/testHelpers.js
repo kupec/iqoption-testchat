@@ -9,7 +9,7 @@ async function assertSocketOpen(socket) {
     await assertEvent({
         target: socket,
         event: 'open',
-        timeout: 100,
+        timeout: 2000,
         message: 'Cannot open ws connection',
     });
 }

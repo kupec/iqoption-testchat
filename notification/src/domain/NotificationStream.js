@@ -11,5 +11,9 @@ class NotificationStream extends EventEmitter {
 }
 
 const notificationStream = new NotificationStream();
-notificationStream.start();
+notificationStream.start().catch(error => {
+    console.error('Cannot access redis');
+    process.exit(1);
+});
+
 module.exports = notificationStream;

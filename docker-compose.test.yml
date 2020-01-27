@@ -12,3 +12,8 @@ services:
     postgres:
 
     redis:
+
+    test:
+        build: test
+        environment:
+            - HOST=lb

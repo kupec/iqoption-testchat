@@ -1,3 +1,4 @@
+const assert = require('assert');
 const WebSocket = require('ws');
 const {API_HOST} = require('./config');
 
@@ -28,10 +29,18 @@ function openWebSocket(tearDown) {
     return socket;
 }
 
-async function getNextWebSocketMessage() {
+async function getNextWebSocketMessage({timeout}) {
     if (messages.length === 0) {
-        await messagePromise;
+        await Promise.race([messagePromise, makeTimeout('Cannot get websocket message due timeout', timeout)]);
     }
 
     return messages.shift();
+}
+
+async function makeTimeout(message, timeout) {
+    return new Promise((_, reject) =>
+        setTimeout(() => {
+            reject(new assert.AssertionError({message}));
+        }, timeout)
+    );
 }

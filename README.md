@@ -12,7 +12,7 @@ Components:
 
 Database initialization script is `test/init.sql`
 
-Docker container orchestrator is hand-made. The script `control.sh` is frontent, `load_balancer` contains additional script for modifying nginx config.
+Docker container orchestrator is hand-made. The script `control.sh` is frontend, `load_balancer` folder contains additional script for modifying nginx config.
 
 ## Run tests
 
@@ -20,7 +20,13 @@ Docker container orchestrator is hand-made. The script `control.sh` is frontent,
 bash ./test.sh
 ```
 
-It runs `docker-compose` with clear database, run init.sql script, run mocha tests and tear down containers.
+The script does:
+
+-   run `docker-compose` with clear database
+-   run init.sql script
+-   kill first instances to check failover
+-   run mocha tests
+-   tear down containers
 
 ## Deploy production
 

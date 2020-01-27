@@ -17,7 +17,7 @@ describe('Integration test', function() {
     });
 
     it('Case 1', async function() {
-        this.timeout(200);
+        this.timeout(2000);
 
         const socket = openWebSocket(tearDown);
         await assertSocketOpen(socket);
@@ -34,7 +34,7 @@ describe('Integration test', function() {
         });
 
         await postRoomMessage(201, 'test2', {token: 'token1'});
-        const message = await getNextWebSocketMessage();
+        const message = await getNextWebSocketMessage({timeout: 200});
         expect(message).deep.equal({
             text: 'test2',
             room: {id: 201, name: 'Second room'},
