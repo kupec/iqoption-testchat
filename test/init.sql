@@ -9,5 +9,6 @@ INSERT INTO "rooms" ("id","name","createdAt","updatedAt") VALUES (200,'First roo
 INSERT INTO "rooms" ("id","name","createdAt","updatedAt") VALUES (201,'Second room',NOW(),NOW());
 INSERT INTO "users" ("id","name","createdAt","updatedAt") VALUES (100,'John Doe',NOW(),NOW());
 INSERT INTO "users" ("id","name","createdAt","updatedAt") VALUES (101,'Matt Black',NOW(),NOW());
+INSERT INTO "messages" ("id","text","roomId","userId","createdAt","updatedAt") VALUES (10,'test',200,100,NOW(),NOW());
 INSERT INTO "accessTokens" ("id","userId","createdAt","updatedAt") VALUES ('token1',100,NOW(),NOW());
 INSERT INTO "accessTokens" ("id","userId","createdAt","updatedAt") VALUES ('token2',101,NOW(),NOW());

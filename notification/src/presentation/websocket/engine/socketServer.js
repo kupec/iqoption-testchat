@@ -11,8 +11,22 @@ async function start(argument) {
 
     server.on('connection', socket => {
         const listener = message => {
-            socket.send(message);
+            const {text, room, user} = JSON.parse(message);
+            socket.send(
+                JSON.stringify({
+                    text,
+                    room: {
+                        id: room.id,
+                        name: room.name,
+                    },
+                    user: {
+                        id: user.id,
+                        name: user.name,
+                    },
+                })
+            );
         };
+
         notificationStream.on('notification', listener);
 
         socket.on('close', () => {
